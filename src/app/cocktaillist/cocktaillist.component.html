@@ -1,0 +1,7 @@
+<button (click)="onClick()">clique</button>
+@if (isShow) { @for (cocktail of cocktailsList; track cocktail.nom) {
+<div>
+  <h2>{{ cocktail.nom }}</h2>
+  <p>{{ cocktail.prix }}</p>
+</div>
+} }
