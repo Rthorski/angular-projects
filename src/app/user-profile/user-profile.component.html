@@ -1,0 +1,15 @@
+<div class="wrap-contact">
+  <img [src]="user.photo" [alt]="user.firstName" />
+  <div class="name-firstname">
+    <p>Nom : {{ user.name }}</p>
+    <p>Prénom : {{ user.firstName }}</p>
+  </div>
+  <div class="citation">
+    <p>{{ citation }}</p>
+    <input type="text" [(ngModel)]="citation" />
+  </div>
+  <button (click)="showAgeOrNot()">Afficher/Masquer mon âge</button>
+  <div [hidden]="isHidden">
+    <p>{{ user.age }}</p>
+  </div>
+</div>
