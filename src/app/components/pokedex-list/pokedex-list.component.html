@@ -1,0 +1,4 @@
+@for (pokemon of pokemons; track pokemon.nom) {
+<p>{{ pokemon.nom }}</p>
+<img [src]="pokemon.url" [alt]="pokemon.nom" height="200" width="200" />
+}
