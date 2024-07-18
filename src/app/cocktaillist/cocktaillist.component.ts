@@ -1,19 +1,22 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CocktailService } from '../services/cocktail.service';
+import { Cocktail } from '../models/cocktail.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cocktaillist',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './cocktaillist.component.html',
   styleUrl: './cocktaillist.component.scss',
 })
-export class CocktaillistComponent {
-  public cocktails = inject(CocktailService);
-  isShow = false;
-  cocktailsList = this.cocktails.getCocktails();
+export class CocktaillistComponent implements OnInit {
+  cocktails: Cocktail[] = [];
+  public cocktailService = inject(CocktailService);
 
-  onClick(): void {
-    this.isShow = !this.isShow;
+  ngOnInit(): void {
+    this.cocktailService.getCocktails().subscribe((cocktailsJson) => {
+      this.cocktails = cocktailsJson;
+    });
   }
 }

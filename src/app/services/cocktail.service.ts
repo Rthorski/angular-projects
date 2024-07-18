@@ -1,21 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Cocktail } from '../models/cocktail.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CocktailService {
+  private http = inject(HttpClient);
   constructor() {}
 
-  mojito: Cocktail = { nom: 'Mojito', prix: 8, image: 'mojito.jpg' };
-  pinaColada: Cocktail = {
-    nom: 'Pina Colada',
-    prix: 9,
-    image: 'pina-colada.jpg',
-  };
-  margarita: Cocktail = { nom: 'Margarita', prix: 8, image: 'margarita.jpg' };
-
-  getCocktails() {
-    return [this.mojito, this.pinaColada, this.margarita];
+  getCocktails(): Observable<Cocktail[]> {
+    return this.http.get<Cocktail[]>('cocktails.json');
   }
 }
